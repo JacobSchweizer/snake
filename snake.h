@@ -45,6 +45,11 @@ typedef struct {   // Structure declaration
 coordinate fruit_array[5];
 
 
+char page;
+
+int howToPlayCount;
+
+
 
 int snake_length;
 snake_part snake_array[100];

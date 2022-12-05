@@ -54,6 +54,10 @@ int main(void){
 
 	display_init(); //Initialize OLED display 
 
+
+	page = 'M';
+	howToPlayCount = 0;
+
 	score = 0; //Set score to one
 
     direction = 'L';

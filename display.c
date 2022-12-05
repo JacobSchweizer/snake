@@ -174,14 +174,120 @@ void clear_display() {
 
 /*This function calls all the necessary functions for the game to start*/
 void display_start(){
-	clear_display(); //This clear the screen everytime it loops. It will clear the last frame
-	game_update(); //Call game
+
+	//clear_display(); //This clear the screen everytime it loops. It will clear the last frame
+	//display_update();
+
+	//display_image(0,oled_display);
+
+
+
+	switch(page){
+
+
+		case 'M':
+		main_menu();
+		display_update();
+		break;
+
+		case 'G':
+		clear_display();
+		game_update(); //Call game
+	    translateToImage(); //Translate 
+	    display_image(0, oled_display); //And then display the frame
+		break;
+
+		case 'H':
+		How_To_Play();
+		display_update();
+		break;
+
+	}
+	
+}
+
+void main_menu() {
+
+	//display_string(0, "Welcome to the");
+	//display_string(2, "SNAKE GAME!"); 
+
+	//quicksleep(300000);
+
+	//clear_display(); 
+    display_string(0, "SNAKE GAME"); 
+	display_string(1, "BTN4. New Game"); 
+	display_string(2, "BTN3. How to Play"); 
+	
+	
+	 int btn_value = getbtns();
+
+	 switch(btn_value){
+        case 4:
+		page = 'G'; 
+        break;
+
+        case 2:
+		page = 'H'; 
+        break;
+
+    }
+
+}
+    
+void How_To_Play() {
+
+	clear_display();  
+
+
+
+	switch(howToPlayCount){
+
+		case 0:
+		display_string(0, "This is how you"); 
+	    display_string(1, "play the Snake Game: "); 
+		display_string(2, ""); 
+		display_string(3, "");
+		break;
+		
+
+		case 1:
+		display_string(0, "BTN4 to move left."); 
+	    display_string(1, "BTN3 to move up."); 
+		display_string(2, ""); 
+		display_string(3, "");
+		break;
+
+		case 2:
+		display_string(0, "BTN4 to move left."); 
+	    display_string(1, "BTN3 to move up."); 
+		display_string(2, ""); 
+		display_string(3, "");
+		break;
+
+	}
 
 	
+	
 
-	translateToImage(); //Translate 
-	display_image(0, oled_display); //And then display the frame
+
+	int btn_value = getbtns();
+
+	 switch(btn_value){
+        case 4:
+		page = 'M'; 
+        break;
+
+        case 2:
+		howToPlayCount--;
+        break;
+		case 1:
+		howToPlayCount++;
+        break;
+	
+
+     }
 }
+	
 
 
 
